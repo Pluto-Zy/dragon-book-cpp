@@ -8,6 +8,7 @@ namespace chapter2 {
     Token(const Token&) = default;
     Token(Token&&) = default;
     // assignment operators are deleted because of const data member
+    // There is no need to use virtual dtor if we use std::shared_ptr
     virtual ~Token() = default;
   };
 

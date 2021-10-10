@@ -12,11 +12,10 @@ namespace chapter2 {
   void Lexer::reserve(std::shared_ptr<Word> word) {
     // we need this statement
     // because if we write 
-    // words.emplace(std::piecewise_construct, std::forward_as_tuple(word->lexeme), std::forward_as_tuple(std::move(word)));
+    // words.emplace(word->lexeme, std::move(word));
     // it will cause undefined-behaviour
     std::string key = word->lexeme;
-    words.emplace(std::piecewise_construct, 
-      std::forward_as_tuple(key), std::forward_as_tuple(std::move(word)));
+    words.emplace(std::move(key), std::move(word));
   }
 
   std::shared_ptr<Token> Lexer::scan() {
